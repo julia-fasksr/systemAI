@@ -1,0 +1,36 @@
+# Задача 1: освещённость помещения -> потребность растения в свете
+VAR light IN 0 100 "Освещённость помещения"
+VAR need OUT 0 10 "Потребность растения в свете"
+
+SET light vlow tri 0 0 17
+SET light low tri 0 17 33
+SET light mlow tri 17 33 50
+SET light mid tri 33 50 67
+SET light mhigh tri 50 67 83
+SET light high tri 67 83 100
+SET light vhigh tri 83 100 100
+
+SET need shade trap 0 0 1 3
+SET need semi tri 1 3 5
+SET need medium tri 3 5 7
+SET need bright tri 5 7 9
+SET need sun trap 7 9 10 10
+
+RULE IF light IS vlow THEN need IS shade
+RULE IF light IS low THEN need IS shade
+RULE IF light IS mlow THEN need IS semi
+RULE IF light IS mid THEN need IS medium
+RULE IF light IS mhigh THEN need IS bright
+RULE IF light IS high THEN need IS bright
+RULE IF light IS vhigh THEN need IS sun
+
+PLANT 1 "Замиокулькас"
+PLANT 3 "Спатифиллум"
+PLANT 5 "Фикус Бенджамина"
+PLANT 8 "Герань"
+
+CASE light=10
+CASE light=30
+CASE light=50
+CASE light=70
+CASE light=90
